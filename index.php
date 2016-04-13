@@ -3,16 +3,17 @@
     <meta charset="utf-8" />
     <title>Easy.Notes</title>
 </head>
-<body>
-    <p>Заметки</p>
-        <div style="align-self:center">Логин:</div>
-		<form action="">
-        <div style="align-self:center"><input type="text" name="log" required autofocus /></div>
-        <div style="align-self:center">Пароль:</div>
-        <div style="align-self:center"><input type="password" name="pass" required autofocus /></div>
-        <div style="align-self:center"><input type="submit" value="Вход" name="type"/></div>
-        <div style="align-self:center"><input type="submit" value="Регистрация" name="type"/></div>
-		</form>
+<body style="background-color:lavender">
+    <br>
+    <p align="center" style="background-color:khaki;font-size:32px;font-family:'Comic Sans MS'">Заметки</p>
+    <div align="center" style="font-size:20px">Логин:</div>
+    <form action="">
+        <div align="center"><input type="text" name="log" required autofocus /></div>
+        <div align="center" style="font-size:20px">Пароль:</div>
+        <div align="center"><input type="password" name="pass" required autofocus /></div><br />
+        <div align="center"><input type="submit" value="Вход" name="type" style="font-size:16px"/></div><br />
+        <div align="center" ><input type="submit" value="Регистрация" name="type" style="font-size:16px"/></div>
+    </form>
 		
         <?php
     session_start();
