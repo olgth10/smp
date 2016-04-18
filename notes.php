@@ -2,55 +2,47 @@
 <head>
     <title>Easy.Notes</title>
     <meta charset="utf-8" />
-<style>
-        .great_btn {
- background: linear-gradient(to bottom, #0bc408 0%,#09a206 100%);
- color: #fff;
- font-size: 16px;
- text-shadow: 0 1px 0 #757575;
- padding: 4px 0 5px 0;
- margin: 0;
- cursor: pointer;
- border: 0;
- border-top: 1px solid #87c286;
- border-right: 1px solid #0e780c;
- border-left: 1px solid #0e780c;
- border-bottom: 1px solid #0e780c;
- box-shadow: 0 -1px 0 #0e780c, 0 1px 0 #fff;
- width: 150px;
- border-radius: 2px;
-}
-    </style>
+    <link href="css/bootstrap.css" rel="stylesheet">
 </head>
 <body style="background-color:lavender">
 	<form action="leave.php">
-		<div align="right"><input type="submit" value="Выход" /></div>
+		<div align="right"><input type="submit" value="Выход" class="btn-primary"/></div>
 	</form>
 	<form action="deleteuser.php">
-		<div align="right"><input type="submit" value="Удалить аккаунт" /></div>
+		<div align="right"><input type="submit" value="Удалить аккаунт" class="btn-primary" /></div>
 	</form>
 <div align="center" style="font-size:32px;">Заметка:</div><br />
 	<form action="add.php">
-<div align="center" style="font-size:20px;">Заголовок:</div><br />
-        <div align="center"><input type="text" name="title" style="height:30px;width:300px"/></div><br />
-    <div align="center" style="font-size:20px;">Заметка:</div><br />
-        <div align="center"><textarea style="height:150px;width:500px" name="text" ></textarea></div><br />
-        <div align="center"><input type="submit" value="Добавить заметку" class="great_btn"/></div><br /><br /><br />
-    </form>
+    <div align="center" style="font-size:20px;">Заголовок:</div><br />
+        <div align="center"><input type="text" name="title" id="title" style="height:30px;width:300px" required/></div><br />
+    <div align="center" style="font-size:20px;">Текст:</div><br />
+        <div align="center"><textarea style="height:150px;width:500px" name="text" id="text" required ></textarea></div><br />
+        <div align="center"><input type="submit" value="Добавить заметку" class="btn btn-large btn-primary"/></div><br /><br /><br />
+  </form>
 <div align="center" style="font-size:32px">Заметки пользователя:</div>
     <?
     session_start();
+    //
 $db=new MongoClient();
 $users=$db->notes->users;
 $notes=$db->notes->notes;
 $log=$_SESSION['log'];
 $cursor = $notes->find();
+$text=$_GET['text'];
+$title=$_GET['title'];
+echo '
+<script>
+document.getElementById("title").value="'.$title.'";
+document.getElementById("text").value="'.$text.'";
+</script>
+';
   foreach ($cursor as $obj) {
   	if ($obj['acc']==$log){
 		echo '<hr>';
   		echo '<div align="center" style="font-size:24px">Заголовок:'.$obj['title'].'</div><br />';
   		echo '<div align="center" style="font-size:20px">Текст:'.$obj['text'].'</div><br />';
-  		echo '<form action="deletenote.php"><a href="deletenote.php?title='.$obj['title'].'&text='.$obj['text'].'">delete</button></form>';
+      echo '<div align="center"><a href="changenote.php?title='.$obj['title'].'&text='.$obj['text'].'">Изменить заметку</a></div>';
+  		echo '<div align="center"><a href="deletenote.php?title='.$obj['title'].'&text='.$obj['text'].'">Удалить заметку</a></div>';
   		echo '<br/>';
   	}
   
