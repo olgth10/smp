@@ -50,7 +50,7 @@ $cursor = $notes->find();
 		echo '<hr>';
   		echo '<div align="center" style="font-size:24px">Заголовок:'.$obj['title'].'</div><br />';
   		echo '<div align="center" style="font-size:20px">Текст:'.$obj['text'].'</div><br />';
-  		echo '<form action="deltenote.php"><a href="deletenote.php?title='.$obj['title'].'&text='.$obj['text'].'" >delete</a></form>';
+  		echo '<form action="deletenote.php"><a href="deletenote.php?title='.$obj['title'].'&text='.$obj['text'].'">delete</button></form>';
   		echo '<br/>';
   	}
   
